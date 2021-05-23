@@ -8,7 +8,7 @@ class PokerView extends StatefulWidget {
 }
 
 class _PokerViewState extends State<PokerView> {
-  final controller = PokerController();
+  final pokerViewModel = PokerViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +17,11 @@ class _PokerViewState extends State<PokerView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FutureBuilder<Pokemon>(
-                future: controller.pokemon,
+            StreamBuilder<Pokemon>(
+                stream: pokerViewModel.streamPokemon.stream,
                 builder: (context, snapshot) {
                   print(snapshot.connectionState);
-                  if (snapshot.connectionState != ConnectionState.done &&
+                  if (snapshot.connectionState != ConnectionState.active &&
                       snapshot.connectionState != ConnectionState.none) {
                     return CircularProgressIndicator();
                   }
@@ -123,7 +123,7 @@ class _PokerViewState extends State<PokerView> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  controller.loadPokemon();
+                  pokerViewModel.loadPokemon();
                 });
               },
               child: Text('Procurar Pokemon'),

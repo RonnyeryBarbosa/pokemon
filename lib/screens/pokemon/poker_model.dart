@@ -12,7 +12,7 @@ class PokerModel {
 
   int get number => _number;
 
-  fetchPokemon(int number) {
+  fetchPokemon() {
     _pokemon = API().fetchPokemon(Random().nextInt(1000));
   }
 }
