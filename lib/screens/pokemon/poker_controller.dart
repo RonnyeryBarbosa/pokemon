@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:pokemon/screens/pokemon/pokemon.dart';
 import 'package:pokemon/screens/pokemon/poker_model.dart';
@@ -11,7 +12,8 @@ class PokerViewModel {
   StreamController<Pokemon> streamPokemon = StreamController();
 
   loadPokemon() {
-    _model.fetchPokemon();
+    var id = Random().nextInt(1000);
+    _model.fetchPokemon(id);
     _model.pokemon.then((value) {
       streamPokemon.add(value);
     });

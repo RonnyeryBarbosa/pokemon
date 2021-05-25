@@ -4,8 +4,10 @@ class Pokemon {
   int experience;
   List<Ability> abilidades;
 
+  Pokemon(this.nome, this.urlImage, this.experience, this.abilidades);
   Pokemon.fromJson(Map<String, dynamic> json) {
     nome = json['name'];
+    print(nome);
     urlImage = json['sprites']['front_default'];
     experience = json['base_experience'];
     abilidades = List<Ability>.from(

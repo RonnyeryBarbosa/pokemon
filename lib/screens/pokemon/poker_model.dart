@@ -7,12 +7,15 @@ class PokerModel {
   final int _number = 0;
 
   Future<Pokemon> _pokemon;
+  final API api;
 
   Future<Pokemon> get pokemon => _pokemon;
 
+  PokerModel({this.api = const API()});
+
   int get number => _number;
 
-  fetchPokemon() {
-    _pokemon = API().fetchPokemon(Random().nextInt(1000));
+  fetchPokemon(int id) {
+    _pokemon = api.fetchPokemon(id);
   }
 }
